@@ -28,20 +28,21 @@ import java.util.Random;
 
 public class ProducerExample {
   public static void main(String[] args){
-    if (args.length != 2) {
-      System.out.println("Please provide command line arguments: numEvents schemaRegistryUrl");
+    if (args.length != 3) {
+      System.out.println("Please provide command line arguments: numEvents schemaRegistryUrl urlBootstrapServers");
       System.exit(-1);
     }
     long events = Long.parseLong(args[0]);
-    String url = args[1];
+    String urlSchemaRegistry = args[1];
+    String urlBootstrapServers = args[2];
 
     Properties props = new Properties();
-    props.put("bootstrap.servers", "localhost:9092");
+    props.put("bootstrap.servers", urlBootstrapServers);
     props.put("acks", "all");
     props.put("retries", 0);
     props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
     props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
-    props.put("schema.registry.url", url);
+    props.put("schema.registry.url", urlSchemaRegistry);
 
     String schemaString = "{\"namespace\": \"example.avro\", \"type\": \"record\", " +
                            "\"name\": \"page_visit\"," +
