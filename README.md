@@ -47,7 +47,7 @@ First cd to the `producer` directory, then run the example producer to publish 1
     # Run the producer
     $ cd producer
     $ mvn exec:java -Dexec.mainClass="io.confluent.examples.producer.ProducerExample" \
-      -Dexec.args="10 http://localhost:8081"
+      -Dexec.args="10 http://localhost:8081 localhost:9092"
 
 Then cd to the `consumer` directory, and run the consumer group example to consume
 the records we just published to the cluster and display in the console.
